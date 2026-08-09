@@ -26,6 +26,8 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       # Publish the contents of prize-competition-venture as the site root,
       # so the URL is /raffle/ rather than /raffle/prize-competition-venture/
