@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>_src</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="venture.css" />
+  <style>
+    body { padding-bottom: var(--space-3xl); }
+
+    .doc-container { max-width: 940px; margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
+    .doc-container h2 { margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: 1px solid var(--line); scroll-margin-top: var(--space-md); }
+    .doc-container h3 { margin-top: var(--space-lg); margin-bottom: var(--space-sm); }
+    .doc-container h4 { margin-top: var(--space-md); }
+    .doc-container ul, .doc-container ol { margin: 0 0 var(--space-md) var(--space-lg); }
+    .doc-container li { margin-bottom: var(--space-xs); }
+    .doc-container table { margin: var(--space-md) 0 var(--space-lg) 0; }
+    .doc-container pre {
+      background: var(--paper-soft); border: 1px solid var(--line);
+      border-radius: var(--radius-md); padding: var(--space-md);
+      overflow-x: auto; font-size: 0.82rem; line-height: 1.5; margin-bottom: var(--space-lg);
+    }
+    .doc-container blockquote {
+      border-left: 4px solid var(--accent); background: var(--accent-tint);
+      padding: var(--space-md) var(--space-lg); border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+    }
+    .doc-container blockquote p { margin-bottom: 0; }
+    .doc-container hr { display: none; }
+    .doc-container a { word-break: break-word; }
+
+    /* Prototype callout */
+    .proto-callout {
+      background: linear-gradient(135deg, var(--accent-tint), #fff 72%);
+      border: 1px solid var(--accent-line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+      box-shadow: var(--shadow-sm);
+    }
+    .proto-callout__title {
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
+      color: var(--ink); margin-bottom: var(--space-sm);
+    }
+    .proto-callout__text { font-size: 0.9rem; line-height: 1.6; margin-bottom: var(--space-md); }
+    .proto-callout .btn { margin-right: var(--space-sm); }
+
+    /* Table of contents */
+    #TOC {
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg) var(--space-lg) var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    #TOC::before {
+      content: 'Contents'; display: block;
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
+      color: var(--ink); margin-bottom: var(--space-md);
+    }
+    #TOC ul { list-style: none; margin: 0; padding-left: 0; columns: 2; column-gap: var(--space-xl); }
+    #TOC ul ul { columns: 1; padding-left: var(--space-md); margin-top: var(--space-xs); }
+    #TOC li { margin-bottom: 6px; font-size: 0.88rem; break-inside: avoid; }
+    #TOC ul ul li { font-size: 0.82rem; color: var(--muted); }
+    #TOC a { color: var(--ink-soft); text-decoration: none; }
+    #TOC a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* Executive summary */
+    #executive-summary {
+      background: var(--accent-tint);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      border-top: none; margin-top: 0;
+    }
+
+    @media (max-width: 768px) { #TOC ul { columns: 1; } }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__content">
+      <div class="site-header__title">Prize Competition Venture</div>
+      <div class="site-header__subtitle">Business Case v0.4 &middot; Draft for founder review</div>
+    </div>
+    <div class="site-header__action">
+      <a class="btn btn--primary" href="customer-journey-prototypes.html">Open journey prototypes &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<div class="doc-container">
+
+<div class="proto-callout">
+  <div class="proto-callout__title">Clickable customer journey prototypes</div>
+  <div class="proto-callout__text">
+    Three annotated walkthroughs support this case &mdash; <strong>paid entry</strong>,
+    <strong>free entry route</strong> and <strong>instant win with reveal</strong>.
+    Each screen is annotated with design intent, commercial risk and the specific legal
+    provision it satisfies. Journey B is the one to review alongside blocking item 0c.
+  </div>
+  <a class="btn btn--primary" href="customer-journey-prototypes.html">Open prototypes</a>
+  <a class="btn btn--secondary" href="#22-customer-journey-prototypes-yellow_circle-illustrative">Read &sect;22</a>
+</div>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#prize-competition-venture--business-case-v04"
+id="toc-prize-competition-venture--business-case-v04">Prize Competition
+Venture — Business Case v0.4</a>
+<ul>
+<li><a href="#executive-summary" id="toc-executive-summary">Executive
+summary</a></li>
+<li><a href="#how-to-read-this-document"
+id="toc-how-to-read-this-document">How to read this document</a></li>
+<li><a href="#1-founding-situation-green_circle-decided"
+id="toc-1-founding-situation-green_circle-decided">1. Founding situation
+🟢 DECIDED</a></li>
+<li><a href="#2-capital-requirement-yellow_circle-modelled"
+id="toc-2-capital-requirement-yellow_circle-modelled">2. Capital
+requirement 🟡 MODELLED</a></li>
+<li><a
+href="#3-prize-funding-model-green_circle-decided--red_circle-assumed"
+id="toc-3-prize-funding-model-green_circle-decided--red_circle-assumed">3.
+Prize funding model 🟢 DECIDED / 🔴 ASSUMED</a></li>
+<li><a href="#4-reserve-hierarchy-green_circle-decided"
+id="toc-4-reserve-hierarchy-green_circle-decided">4. Reserve hierarchy
+🟢 DECIDED</a></li>
+<li><a href="#5-launch-category-decision-green_circle-decided"
+id="toc-5-launch-category-decision-green_circle-decided">5. Launch
+category decision 🟢 DECIDED</a></li>
+<li><a href="#6-five-competition-cash-flow-model-yellow_circle-modelled"
+id="toc-6-five-competition-cash-flow-model-yellow_circle-modelled">6.
+Five-competition cash flow model 🟡 MODELLED</a></li>
+<li><a
+href="#7-payment-acquiring-red_circle-assumed--highest-priority-external-dependency"
+id="toc-7-payment-acquiring-red_circle-assumed--highest-priority-external-dependency">7.
+Payment acquiring 🔴 ASSUMED — HIGHEST PRIORITY EXTERNAL
+DEPENDENCY</a></li>
+<li><a
+href="#8-regulatory--licensing-model--gb-england-wales-scotland-green_circle-decided--red_circle-assumed"
+id="toc-8-regulatory--licensing-model--gb-england-wales-scotland-green_circle-decided--red_circle-assumed">8.
+Regulatory &amp; licensing model — GB (England, Wales, Scotland) 🟢
+DECIDED / 🔴 ASSUMED</a></li>
+<li><a
+href="#9-compliance-obligations--five-regulators-not-one-green_circle-decided"
+id="toc-9-compliance-obligations--five-regulators-not-one-green_circle-decided">9.
+Compliance obligations — five regulators, not one 🟢 DECIDED</a></li>
+<li><a
+href="#10-operating-model--agent-first-with-escalation-triggers-green_circle-decided"
+id="toc-10-operating-model--agent-first-with-escalation-triggers-green_circle-decided">10.
+Operating model — agent-first with escalation triggers 🟢
+DECIDED</a></li>
+<li><a href="#11-insurance--split-by-type-green_circle-decided"
+id="toc-11-insurance--split-by-type-green_circle-decided">11. Insurance
+— split by type 🟢 DECIDED</a></li>
+<li><a href="#12-mvp-scope-green_circle-decided"
+id="toc-12-mvp-scope-green_circle-decided">12. MVP scope 🟢
+DECIDED</a></li>
+<li><a href="#13-acquisition-strategy-red_circle-assumed"
+id="toc-13-acquisition-strategy-red_circle-assumed">13. Acquisition
+strategy 🔴 ASSUMED</a></li>
+<li><a href="#14-unfair-advantage-green_circle-decided"
+id="toc-14-unfair-advantage-green_circle-decided">14. Unfair advantage
+🟢 DECIDED</a></li>
+<li><a
+href="#15-success-definitions-red_circle-assumed-targets-not-commitments"
+id="toc-15-success-definitions-red_circle-assumed-targets-not-commitments">15.
+Success definitions 🔴 ASSUMED (targets, not commitments)</a></li>
+<li><a href="#16-stop-conditions-green_circle-decided"
+id="toc-16-stop-conditions-green_circle-decided">16. Stop conditions 🟢
+DECIDED</a></li>
+<li><a href="#17-pivot-rules-green_circle-decided"
+id="toc-17-pivot-rules-green_circle-decided">17. Pivot rules 🟢
+DECIDED</a></li>
+<li><a href="#18-risk-register-green_circle-decided-living-document"
+id="toc-18-risk-register-green_circle-decided-living-document">18. Risk
+register 🟢 DECIDED (living document)</a></li>
+<li><a href="#19-programme-phase-gates-yellow_circle-corrected"
+id="toc-19-programme-phase-gates-yellow_circle-corrected">19. Programme
+phase gates 🟡 CORRECTED</a></li>
+<li><a href="#20-gono-go-assessment-green_circle-decided"
+id="toc-20-gono-go-assessment-green_circle-decided">20. Go/No-Go
+assessment 🟢 DECIDED</a></li>
+<li><a
+href="#21-open-items-log--resolve-before-phase-1-spec-is-finalised"
+id="toc-21-open-items-log--resolve-before-phase-1-spec-is-finalised">21.
+Open items log — resolve before Phase 1 spec is finalised</a></li>
+<li><a href="#22-customer-journey-prototypes-yellow_circle-illustrative"
+id="toc-22-customer-journey-prototypes-yellow_circle-illustrative">22.
+Customer journey prototypes 🟡 ILLUSTRATIVE</a></li>
+<li><a href="#next-step" id="toc-next-step">Next step</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="prize-competition-venture--business-case-v04">Prize Competition
+Venture — Business Case v0.4</h1>
+<p><strong>Status:</strong> Draft for founder review — not yet approved,
+not yet legally or financially validated <strong>Phase:</strong> 0.5
+(Business Case) — precedes 01 (Business &amp; Compliance Model)
+<strong>Supersedes:</strong> v0.1 (initial draft), v0.2 (review
+response), v0.3 (regulatory analysis) — consolidates all three. Capital
+requirement is derived from the cash flow model in §6, not assumed as an
+input.</p>
+<hr />
+<h2 id="executive-summary">Executive summary</h2>
+<p><strong>Verdict: conditional go — but not at the pricing and
+competition sequence currently modelled.</strong></p>
+<p>The market is real and the strategy is defensible. The blocker is
+unit economics, and it is fixable but not yet fixed.</p>
+<h3 id="the-opportunity">The opportunity</h3>
+<p>The UK prize competition sector is worth approximately <strong>£1.3bn
+annually</strong>, with <strong>7.4m adult participants</strong> and
+<strong>400+ operators</strong> (DCMS research). It is established,
+growing and fragmented — no operator owns the full customer lifecycle.
+Competitor analysis across Omaze, That Prize Guy, BOTB, Elite, 7 Days
+Performance and Dream Car Giveaways found each strong in one area and
+weak in others, leaving a genuine gap for a combined proposition.</p>
+<p><strong>Strategy:</strong> premium automotive positioning ("the
+premium prize platform for people who actually love cars"), supported by
+cash and instant-win products, differentiated on trust, transparency and
+disciplined competition economics. Operated on a <strong>hybrid
+agent-human model</strong> — AI agents do the work across every
+function; humans approve wherever regulation, money or customer
+wellbeing is involved.</p>
+<h3 id="the-finding-that-changes-everything-red_circle">The finding that
+changes everything 🔴</h3>
+<p><strong>HMRC confirmed in February 2026 that prize draws offering
+both paid and free entry routes are not VAT-exempt. Paid entries carry
+VAT at 20%.</strong> HMRC began writing to operators directly in July
+2026.</p>
+<p>Applied to the planned five-competition launch sequence:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Pre-VAT</th>
+<th>With 20% VAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cumulative contribution over 5 competitions</td>
+<td>-£16,846</td>
+<td><strong>-£44,434</strong></td>
+</tr>
+<tr>
+<td>Competitions that can break even</td>
+<td>5 of 5</td>
+<td><strong>2 of 5</strong></td>
+</tr>
+<tr>
+<td>Capital required (base case)</td>
+<td>~£60k</td>
+<td><strong>~£99k</strong></td>
+</tr>
+<tr>
+<td>Capital required (downside)</td>
+<td>~£82k</td>
+<td><strong>~£122k</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Three of the five planned competitions cannot break even at
+<em>any</em> sell-through</strong> — break-even lands at 102-105%. This
+is a structural pricing failure, not a sensitivity. More capital does
+not fix it.</p>
+<p>There is an unavoidable tension at the heart of the model: the free
+entry route is what keeps the business outside gambling licensing, and
+it is precisely what disqualifies it from VAT exemption. Both cannot be
+optimised.</p>
+<h3 id="the-second-material-finding-red_circle">The second material
+finding 🔴</h3>
+<p><strong>There is no licensed fallback.</strong> Lottery operating
+licences in Great Britain are available only to non-commercial societies
+and External Lottery Managers acting for them, with a minimum 20% of
+proceeds to a good cause. There is <strong>no licensed route to a
+commercial for-profit prize competition business</strong>.</p>
+<p>If the free entry route fails the statutory test in Schedule 2 of the
+Gambling Act 2005, the business model is unlawful with nowhere to go —
+and promoting an unlicensed lottery is a criminal offence, not a
+regulatory breach. This raises the stakes on getting the entry mechanism
+legally verified <strong>before</strong> build, not after.</p>
+<h3 id="capital-requirement">Capital requirement</h3>
+<p><strong>£115k-£142k all-in</strong>, derived bottom-up from the
+competition cash flow model — not assumed. Range driven by sell-through
+sensitivity and the VAT position. Excludes founder living costs.</p>
+<h3 id="three-blocking-items">Three blocking items</h3>
+<p>Nothing else should proceed until these are resolved:</p>
+<ol type="1">
+<li><strong>Rebuild pricing and competition sequence for 20%
+VAT</strong> — five options set out in §6.8; one must be chosen and
+modelled</li>
+<li><strong>Specialist VAT advice</strong> — confirm HMRC's position,
+input recovery by prize category, and whether competitions 1-3 can run
+below the £90k registration threshold</li>
+<li><strong>Legal opinion on the free entry mechanism</strong> —
+convenience parity under Sch. 2 para. 8(1)(b), and the instant-win
+reveal path under Sch. 2 para. 6</li>
+</ol>
+<h3 id="revised-risk-order">Revised risk order</h3>
+<p>VAT/unit economics is now risk #1, ahead of customer acquisition.
+Free entry route execution is #2. Technology is #9 — the only
+well-understood risk in the list.</p>
+<h3 id="accompanying-prototypes">Accompanying prototypes</h3>
+<p>Three clickable journey walkthroughs support this case — paid entry,
+free entry route, and instant win with reveal — each annotated with the
+design, commercial and legal considerations per screen. See §22, or open
+<a
+href="customer-journey-prototypes.html"><code>customer-journey-prototypes.html</code></a>
+directly. Journey B (free entry route) is the one to review alongside
+blocking item 0c.</p>
+<h3 id="what-this-document-is">What this document is</h3>
+<p>A governing business case, not a specification. Every number is
+labelled 🔴 assumed, 🟡 modelled or 🟢 decided. It is written to be
+argued with, and to be superseded by the Phase 1 compliance model once
+the three blocking items have answers.</p>
+<hr />
+<h2 id="how-to-read-this-document">How to read this document</h2>
+<p>Every number in this document is an <strong>assumption</strong>, not
+a fact. Each one is flagged with a status:</p>
+<ul>
+<li>🔴 <strong>ASSUMED</strong> — no external validation yet, needs
+real-world input before it can be trusted</li>
+<li>🟡 <strong>MODELLED</strong> — derived from other assumptions
+through calculation; only as good as its inputs</li>
+<li>🟢 <strong>DECIDED</strong> — a founder policy choice, not dependent
+on external validation</li>
+</ul>
+<p>This document is meant to be argued with. Where something looks
+wrong, it probably needs a number changed, not a paragraph
+rewritten.</p>
+<hr />
+<h2 id="1-founding-situation-green_circle-decided">1. Founding situation
+🟢 DECIDED</h2>
+<p><strong>Hybrid agent-human operating model,
+founder-accountable.</strong> AI agents do the work — research,
+drafting, analysis, execution, monitoring — across every function
+including the regulated and relationship-led ones. What varies is not
+<em>whether</em> an agent is involved, but <em>how much authority it has
+to act without a human</em>. Nothing is purely human-operated; nothing
+sensitive is fully autonomous.</p>
+<p><strong>Three operating modes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Meaning</th>
+<th>Agent role</th>
+<th>Human role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A — Autonomous</strong></td>
+<td>Agent acts, logged, no gate</td>
+<td>Executes</td>
+<td>Reviews after the fact, spot-checks</td>
+</tr>
+<tr>
+<td><strong>B — Agent-proposed, human-approved</strong></td>
+<td>Agent does the work; nothing takes effect until approved</td>
+<td>Prepares, drafts, recommends, assembles evidence</td>
+<td>Approves, rejects or amends</td>
+</tr>
+<tr>
+<td><strong>C — Human-led, agent-supported</strong></td>
+<td>Human owns the decision/relationship; agent does the
+preparation</td>
+<td>Research, briefing packs, drafting, benchmarking, analysis</td>
+<td>Decides, negotiates, signs, is accountable</td>
+</tr>
+</tbody>
+</table>
+<pre><code>FOUNDER — accountable owner, approver, escalation point
+    │
+    ├── MODE A — AUTONOMOUS
+    │     ├── Engineering agent       build, maintenance, deploys (non-architectural)
+    │     ├── Analytics agent         velocity, CAC, forecast variance, alerting
+    │     ├── Finance ops agent       reconciliation prep, reserve tracking, reporting
+    │     └── Support agent           tier-1 factual queries
+    │
+    ├── MODE B — AGENT-PROPOSED, HUMAN-APPROVED
+    │     ├── Content/creative agent  copy, vehicle editorial, assets → founder approves
+    │     ├── Merchandising agent     zones, scheduling, badges → founder approves
+    │     ├── Lifecycle/CRM agent     campaigns, sequences → founder approves
+    │     ├── Marketing ops agent     ad variants, budget changes → founder approves
+    │     ├── Draw execution          automated RNG → founder verifies and signs off
+    │     ├── Winner verification     agent runs checks, assembles verification pack,
+    │     │                           drafts comms → founder approves and makes contact
+    │     ├── Free-entry processing   agent intake, validation, batch prep → founder audits
+    │     └── RG / harm intervention  agent detects, scores, evidences, recommends
+    │                                 → founder decides
+    │
+    └── MODE C — HUMAN-LED, AGENT-SUPPORTED
+          ├── Legal            agent drafts terms, prepares briefing packs, tracks
+          │                    regulatory change → solicitor reviews and advises
+          ├── Accounting       agent prepares reconciliation, management accounts
+          │                    → accountant signs statutory accounts
+          ├── Payment acquirer agent prepares underwriting pack, compares providers,
+          │                    models reserve terms → founder negotiates
+          └── Prize suppliers  agent benchmarks pricing, sources stock, builds
+                               shortlists, drafts terms → founder negotiates and buys</code></pre>
+<p><strong>Why the modes matter, rather than a human/agent
+split.</strong> Two constraints shape where the gates go — but neither
+means "no agent involvement":</p>
+<ol type="1">
+<li><strong>Regulatory accountability.</strong> The DCMS Code expects
+identifiable human responsibility for complaints and
+responsible-participation intervention. That's satisfied by Mode B — the
+agent can do the detection, scoring, evidence assembly and
+recommendation, provided a named human makes and owns the decision.
+Fully autonomous harm decisions would not be defensible; agent-prepared
+ones are.</li>
+<li><strong>Trust-critical and relationship work.</strong> Winner
+verification and supplier/acquirer negotiation still get heavy agent
+support (verification checks, comms drafts, price benchmarking,
+underwriting packs) — the human is the approver and counterparty, not
+the researcher.</li>
+</ol>
+<p><strong>Mode C is where agents cut external cost.</strong> Legal,
+accounting and procurement remain human-led, but agent preparation
+should reduce billable hours and improve negotiating position — e.g.
+arriving at a solicitor with drafted terms to review rather than a blank
+brief, or at a dealer with benchmarked pricing. The £3k-£7.5k legal
+provision in §8 assumes agent-prepared inputs.</p>
+<p><strong>The honest tradeoff (🔴 ASSUMED, needs validating in
+build):</strong> this model reduces headcount cost but
+<em>increases</em> platform build scope. Approval queues, audit trails,
+guardrails and escalation routing are all real build work. Cost shifts
+from salaries to build time and complexity — it doesn't disappear. §12
+carries this as an explicit scope line.</p>
+<p><strong>Single-human risk:</strong> the founder is currently the only
+approver for every Mode B and Mode C gate. Agents reduce the
+<em>volume</em> of work but not the <em>approval bottleneck</em>. Named
+risk in §18, open item #7.</p>
+<p><strong>Working launch horizon:</strong> ~3-4 months after legal and
+payment approval — not a year-long build.</p>
+<p><strong>Market context:</strong> UK prize draw/competition sector ≈
+£1.3bn annually, ~7.4m adult participants, 400+ operators (DCMS). Large
+enough to justify testing; fragmented enough that no single operator
+owns the category.</p>
+<hr />
+<h2 id="2-capital-requirement-yellow_circle-modelled">2. Capital
+requirement 🟡 MODELLED</h2>
+<p><strong>No capital figure is assumed as an input.</strong> The
+requirement is derived bottom-up from the five-competition cash flow
+model in §6, then reworked in §6.7 for VAT at 20%.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Capital required (pre legal/insurance/infra)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base case — pre-VAT (superseded)</td>
+<td>~£60k</td>
+</tr>
+<tr>
+<td>Downside — pre-VAT (superseded)</td>
+<td>~£82k</td>
+</tr>
+<tr>
+<td><strong>Base case — with VAT at 20% (§6.7)</strong></td>
+<td><strong>~£99k</strong></td>
+</tr>
+<tr>
+<td><strong>Downside — with VAT at 20% (§6.7)</strong></td>
+<td><strong>~£122k</strong></td>
+</tr>
+<tr>
+<td>Plus legal, insurance, infrastructure (estimate)</td>
+<td>+£15k-£20k</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Derived all-in range: £115k-£142k</strong>, driven almost
+entirely by sell-through sensitivity and the 20% VAT position.</p>
+<p><strong>More importantly — see §6.7:</strong> with VAT applied, three
+of the five planned competitions cannot break even at <em>any</em>
+sell-through. The capital number is not the main problem; the pricing
+and cost structure is. Raising more capital does not fix a competition
+that cannot break even at 100% sell-through — that needs resolving
+before any capital is committed.</p>
+<p><strong>This range excludes:</strong></p>
+<ul>
+<li>Founder living costs</li>
+<li>Any deferred-settlement gap if a prize supplier requires payment
+before a competition sells through</li>
+<li>Error in the acquirer reserve assumption (see §7)</li>
+<li>Retrospective VAT exposure (not applicable to a new entrant, but
+relevant if acquiring an existing operator)</li>
+</ul>
+<hr />
+<h2
+id="3-prize-funding-model-green_circle-decided--red_circle-assumed">3.
+Prize funding model 🟢 DECIDED / 🔴 ASSUMED</h2>
+<p><strong>Decided:</strong> Cash prizes + supplier-backed physical
+prizes. For vehicles, pursue dealer relationships enabling deferred
+settlement, trade pricing, and marketing/photography access rather than
+paying full retail upfront. Prize indemnity insurance is
+<strong>explicitly rejected</strong> for guaranteed random-draw
+competitions — the risk profile doesn't fit (the prize is always
+awarded, not contingent on a low-probability outcome). Insurance is
+instead considered separately for prize <em>loss/damage/theft</em>, not
+payout indemnity (see §11).</p>
+<p><strong>Decided — revenue recycling policy:</strong> Competition 1
+does not fund itself. Initial capital funds Competition 1. Every
+competition after that draws on:</p>
+<pre><code>Available Capital = Working Capital + Released Competition Revenue</code></pre>
+<p>"Released" is the operative word — see §7. Revenue sitting in an
+acquirer rolling reserve is not available capital.</p>
+<p><strong>Decided — undersell policy:</strong> If a competition
+underperforms, the next competition's prize/marketing exposure is
+reduced. Capital discipline is a business rule enforced by policy (and
+eventually the platform), not solved by hoping the next competition
+performs better.</p>
+<p>🔴 <strong>Open item — needs a real number, not a
+flowchart:</strong></p>
+<blockquote>
+<p>If net capital draw on a competition exceeds <strong>£[X]</strong>,
+cap the next competition's prize exposure at <strong>£[Y]%</strong> of
+remaining available capital.</p>
+</blockquote>
+<p>Based on the modelling in §6, a reasonable starting point is
+<strong>X = £10,000</strong> (roughly the worst single-competition draw
+in the base case) and <strong>Y = 50%</strong> of remaining available
+capital. This should be treated as a first draft, not a final rule —
+revisit once real competition 1 data exists.</p>
+<hr />
+<h2 id="4-reserve-hierarchy-green_circle-decided">4. Reserve hierarchy
+🟢 DECIDED</h2>
+<pre><code>Available Capital
+    │
+    ├── Emergency Reserve — 30% of available capital, protected
+    │     (cannot be spent on prizes/marketing/software without explicit founder/board approval)
+    │
+    ├── Prize Reserve
+    └── Marketing Reserve</code></pre>
+<p>The 30% emergency floor is <strong>already built into</strong> the §6
+capital requirement below — it is not an additional line on top of the
+modelled figure.</p>
+<hr />
+<h2 id="5-launch-category-decision-green_circle-decided">5. Launch
+category decision 🟢 DECIDED</h2>
+<p>Not a £100k+ hero car for Competition 1. Progressive sequence:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Category</th>
+<th>Approx. prize</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Cash</td>
+<td>£5,000</td>
+<td>Low capital risk, fast learning cycle</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Cash</td>
+<td>£10,000</td>
+<td>Test repeat rate, price sensitivity</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Accessible car (Golf R / M240i / S3 / RS3 / Evoque / used Cayman
+class)</td>
+<td>£20k-£35k</td>
+<td>First automotive test, moderate risk</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cash + instant wins</td>
+<td>£10k-£15k</td>
+<td>Test instant-win engagement</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Hero car</td>
+<td>£35k-£50k</td>
+<td>First "aspirational" positioning test</td>
+</tr>
+</tbody>
+</table>
+<p>Graduate toward £75k-£150k hero prizes only once CAC, repeat rate,
+sell-through and supplier economics are established (see §6 finding
+below — this sequencing needs a second look).</p>
+<hr />
+<h2 id="6-five-competition-cash-flow-model-yellow_circle-modelled">6.
+Five-competition cash flow model 🟡 MODELLED</h2>
+<h3 id="61-assumptions-all-flagged-all-changeable">6.1 Assumptions (all
+flagged, all changeable)</h3>
+<ul>
+<li>Sell-through improves along a learning curve: 55% → 60% → 65% → 68%
+→ 72% (Comps 1-5) — 🔴 ASSUMED, unproven brand improving with data</li>
+<li>Payment processing cost: 3% of revenue collected — 🔴 ASSUMED</li>
+<li>Acquirer rolling reserve: 15% of revenue, released after 180 days —
+🔴 ASSUMED, <strong>highest-priority item to validate with a real
+acquirer</strong></li>
+<li>Non-reserved 85% settles quickly (T+2 to T+7), treated as
+immediately available — 🔴 ASSUMED</li>
+<li>Prize, marketing, creative, fulfilment, overhead are fixed costs,
+committed regardless of sell-through — 🟢 DECIDED (by definition of
+"committed")</li>
+<li>Competitions launch roughly 1 month apart (Comp 1 = month 0, Comp 5
+= month 4) — 🔴 ASSUMED</li>
+<li>Comp sizing scaled from the original worked example (£25k prize →
+£75k max revenue, ~3x multiplier) — 🟡 MODELLED</li>
+</ul>
+<h3 id="62-per-competition-profitability">6.2 Per-competition
+profitability</h3>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Prize</th>
+<th>Max Revenue</th>
+<th>Fixed Costs</th>
+<th>Sell-through</th>
+<th>Revenue</th>
+<th>Payment Fee (3%)</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — £5k cash</td>
+<td>£5,000</td>
+<td>£15,000</td>
+<td>£12,700</td>
+<td>55%</td>
+<td>£8,250</td>
+<td>£248</td>
+<td><strong>-£4,698</strong></td>
+</tr>
+<tr>
+<td>2 — £10k cash</td>
+<td>£10,000</td>
+<td>£26,000</td>
+<td>£21,200</td>
+<td>60%</td>
+<td>£15,600</td>
+<td>£468</td>
+<td><strong>-£6,068</strong></td>
+</tr>
+<tr>
+<td>3 — £25k car</td>
+<td>£25,000</td>
+<td>£75,000</td>
+<td>£46,000</td>
+<td>65%</td>
+<td>£48,750</td>
+<td>£1,463</td>
+<td><strong>+£1,288</strong></td>
+</tr>
+<tr>
+<td>4 — £10k cash + instant</td>
+<td>£15,000</td>
+<td>£35,000</td>
+<td>£29,300</td>
+<td>68%</td>
+<td>£23,800</td>
+<td>£714</td>
+<td><strong>-£6,214</strong></td>
+</tr>
+<tr>
+<td>5 — £40k hero car</td>
+<td>£40,000</td>
+<td>£96,000</td>
+<td>£68,200</td>
+<td>72%</td>
+<td>£69,120</td>
+<td>£2,074</td>
+<td><strong>-£1,154</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cumulative contribution: -£16,846.</strong> Five competitions
+in, on this sell-through curve, the business is still operating-negative
+before any capital return is considered.</p>
+<p><strong>Finding — this changes the sequencing logic in §5:</strong>
+break-even sell-through for Comps 1, 2 and 4 (the cash/small comps) is
+84-87%. For Comps 3 and 5 (the cars) it's only 65-73%. Marketing and
+creative costs have a floor that doesn't shrink with prize size, so
+<strong>small cash competitions are harder to break even on than
+cars</strong>, not safer. Two options:</p>
+<ol type="1">
+<li>Size Comps 1-2 up slightly, or</li>
+<li>Explicitly plan them as loss-making <strong>acquisition
+competitions</strong> (consistent with the pivot logic in §14 — not
+every competition needs to maximise margin) and fund the loss
+deliberately rather than by accident.</li>
+</ol>
+<h3 id="63-cash-mechanics--the-number-that-actually-matters">6.3 Cash
+mechanics — the number that actually matters</h3>
+<p>Contribution tells you profitability. It doesn't tell you capital
+needed, because 15% of every pound of revenue is invisible for 180
+days.</p>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Revenue</th>
+<th>Reserve held (15%)</th>
+<th>Cash received now (85%)</th>
+<th>Fixed + fee paid out</th>
+<th><strong>Net capital draw</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>£8,250</td>
+<td>£1,238</td>
+<td>£7,013</td>
+<td>£12,948</td>
+<td><strong>£5,935</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>£15,600</td>
+<td>£2,340</td>
+<td>£13,260</td>
+<td>£21,668</td>
+<td><strong>£8,408</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>£48,750</td>
+<td>£7,313</td>
+<td>£41,438</td>
+<td>£47,463</td>
+<td><strong>£6,025</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>£23,800</td>
+<td>£3,570</td>
+<td>£20,230</td>
+<td>£30,014</td>
+<td><strong>£9,784</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>£69,120</td>
+<td>£10,368</td>
+<td>£58,752</td>
+<td>£70,274</td>
+<td><strong>£11,522</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cumulative net capital draw through Comp 5:
+£41,674</strong></p>
+<p>None of the reserve held on any of these five competitions is
+released before the sequence ends (Comp 1's reserve doesn't release
+until month 7; Comp 5 launches month 4). "Revenue recycling" as
+described in §3 only ever recycles the 85% — not the 100% a simple
+flowchart implies.</p>
+<h3 id="64-capital-requirement--base-case">6.4 Capital requirement —
+base case</h3>
+<pre><code>Capital × 0.70 = £41,674   (available for drawdown, after 30% emergency floor)
+Capital = £41,674 / 0.70 ≈ £59,534</code></pre>
+<p><strong>Base case: ~£60k</strong> to survive to the end of
+Competition 5, with the 30% emergency floor intact throughout.</p>
+<p><strong>Trapped reserve at end of month 5:</strong> £1,238 + £2,340 +
+£7,313 + £3,570 + £10,368 = <strong>£24,829</strong>. This is real,
+earned money — an asset, not a loss — but invisible to working capital
+until month 7+. If the acquirer's actual reserve terms differ from the
+15%/180-day assumption, this number moves directly.</p>
+<h3 id="65-downside-stress-test">6.5 Downside stress test</h3>
+<p>Sell-through 10 points lower across the board (45/50/55/58/62%) —
+plausible if early CAC is worse than hoped:</p>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Revenue</th>
+<th>Net capital draw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>£6,750</td>
+<td>£7,283</td>
+</tr>
+<tr>
+<td>2</td>
+<td>£13,000</td>
+<td>£10,270</td>
+</tr>
+<tr>
+<td>3</td>
+<td>£41,250</td>
+<td>£11,706</td>
+</tr>
+<tr>
+<td>4</td>
+<td>£20,300</td>
+<td>£11,584</td>
+</tr>
+<tr>
+<td>5</td>
+<td>£59,520</td>
+<td>£16,905</td>
+</tr>
+</tbody>
+</table>
+<p>Cumulative draw: £57,748 → grossed up for the 30% floor:
+<strong>≈£82,500</strong>.</p>
+<h3 id="66-what-this-tells-us-pre-vat">6.6 What this tells us
+(pre-VAT)</h3>
+<ul>
+<li>Requirement range <strong>£60k (base) to £82k (downside)</strong>
+before legal/insurance/infrastructure.</li>
+<li>The ~£22k gap is driven almost entirely by sell-through — the
+variable with least real-world data.</li>
+<li>The acquirer's actual reserve rate and hold period (§7) is the
+single assumption most likely to move the model.</li>
+<li>Comp 1-2 sizing (§5) needs revisiting given the break-even finding
+in §6.2.</li>
+</ul>
+<p><strong>All of the above is now superseded by §6.7. It is retained to
+show the effect of the VAT finding.</strong></p>
+<h3
+id="67-vat--the-finding-that-breaks-the-model-as-currently-sized-red_circle-critical">6.7
+VAT — the finding that breaks the model as currently sized 🔴
+CRITICAL</h3>
+<p>Per §9.1, HMRC's confirmed position is that paid entries in draws
+offering both paid and free routes carry <strong>VAT at 20%</strong>.
+Sections 6.2-6.6 above did not account for this. Reworking with VAT
+applied:</p>
+<p><strong>Assumptions:</strong> entry prices are VAT-inclusive
+(customer pays the advertised price); output VAT = gross ÷ 6; cost lines
+stated ex-VAT with input VAT recovered, so they are unchanged; payment
+fees are VAT-exempt financial services (no input VAT recovery there).
+Note that <strong>cash prizes carry no recoverable input VAT at
+all</strong>, so cash competitions get no offset.</p>
+<p><strong>Revised profitability:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Gross revenue</th>
+<th>Output VAT</th>
+<th>Net revenue</th>
+<th>Fixed costs</th>
+<th>Fee</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — £5k cash</td>
+<td>£8,250</td>
+<td>£1,375</td>
+<td>£6,875</td>
+<td>£12,700</td>
+<td>£248</td>
+<td><strong>-£6,073</strong></td>
+</tr>
+<tr>
+<td>2 — £10k cash</td>
+<td>£15,600</td>
+<td>£2,600</td>
+<td>£13,000</td>
+<td>£21,200</td>
+<td>£468</td>
+<td><strong>-£8,668</strong></td>
+</tr>
+<tr>
+<td>3 — £25k car</td>
+<td>£48,750</td>
+<td>£8,125</td>
+<td>£40,625</td>
+<td>£46,000</td>
+<td>£1,463</td>
+<td><strong>-£6,838</strong></td>
+</tr>
+<tr>
+<td>4 — £10k cash + instant</td>
+<td>£23,800</td>
+<td>£3,967</td>
+<td>£19,833</td>
+<td>£29,300</td>
+<td>£714</td>
+<td><strong>-£10,181</strong></td>
+</tr>
+<tr>
+<td>5 — £40k hero car</td>
+<td>£69,120</td>
+<td>£11,520</td>
+<td>£57,600</td>
+<td>£68,200</td>
+<td>£2,074</td>
+<td><strong>-£12,674</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cumulative contribution: -£44,434</strong> (was -£16,846
+pre-VAT).</p>
+<p><strong>Revised break-even sell-through — and this is the critical
+output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Break-even sell-through</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — £5k cash</td>
+<td><strong>105%</strong></td>
+<td>❌ Cannot break even at any sell-through</td>
+</tr>
+<tr>
+<td>2 — £10k cash</td>
+<td><strong>102%</strong></td>
+<td>❌ Cannot break even at any sell-through</td>
+</tr>
+<tr>
+<td>3 — £25k car</td>
+<td>76%</td>
+<td>⚠️ Achievable but demanding</td>
+</tr>
+<tr>
+<td>4 — £10k cash + instant</td>
+<td><strong>104%</strong></td>
+<td>❌ Cannot break even at any sell-through</td>
+</tr>
+<tr>
+<td>5 — £40k hero car</td>
+<td>88%</td>
+<td>⚠️ Demanding</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Three of the five competitions as sized cannot break even
+even at 100% sell-through.</strong> This is not a sensitivity issue — it
+is a structural pricing failure. The model as specified in v0.1/v0.2
+does not work once VAT is applied.</p>
+<p><strong>Revised capital requirement:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Comp</th>
+<th>Gross</th>
+<th>VAT due</th>
+<th>Fixed + fee</th>
+<th>Cash received (85%)</th>
+<th>Net capital draw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>£8,250</td>
+<td>£1,375</td>
+<td>£12,948</td>
+<td>£7,013</td>
+<td>£7,310</td>
+</tr>
+<tr>
+<td>2</td>
+<td>£15,600</td>
+<td>£2,600</td>
+<td>£21,668</td>
+<td>£13,260</td>
+<td>£11,008</td>
+</tr>
+<tr>
+<td>3</td>
+<td>£48,750</td>
+<td>£8,125</td>
+<td>£47,463</td>
+<td>£41,438</td>
+<td>£14,150</td>
+</tr>
+<tr>
+<td>4</td>
+<td>£23,800</td>
+<td>£3,967</td>
+<td>£30,014</td>
+<td>£20,230</td>
+<td>£13,751</td>
+</tr>
+<tr>
+<td>5</td>
+<td>£69,120</td>
+<td>£11,520</td>
+<td>£70,274</td>
+<td>£58,752</td>
+<td>£23,042</td>
+</tr>
+</tbody>
+</table>
+<p>Cumulative draw <strong>£69,261</strong> → grossed up for the 30%
+emergency floor: <strong>≈£99,000</strong></p>
+<p>Downside case (-10pts sell-through): cumulative draw ≈£85,400 →
+<strong>≈£122,000</strong></p>
+<p><strong>Revised all-in capital range: £115k-£142k</strong> including
+legal/insurance/infrastructure — roughly <strong>double</strong> the
+pre-VAT base case.</p>
+<h3
+id="68-what-must-change-before-this-business-is-viable-red_circle-open">6.8
+What must change before this business is viable 🔴 OPEN</h3>
+<p>The VAT finding forces at least one of the following. None is
+optional:</p>
+<ol type="1">
+<li><strong>Raise realised entry yield by ~20%+.</strong> Restores the
+pre-VAT position arithmetically, but is an untested demand assumption in
+a price-sensitive market where competitors advertise 9p-99p
+entries.</li>
+<li><strong>Cut the marketing cost floor.</strong> The reason small
+competitions can't break even is that marketing/creative costs don't
+scale down with prize size. Needs organic/referral-led acquisition,
+which contradicts the paid-social plan in §13.</li>
+<li><strong>Drop small cash competitions entirely.</strong> Start at the
+£25k+ car level where break-even is at least achievable. Increases
+capital at risk on competition 1 — directly against the "start small"
+logic in §5.</li>
+<li><strong>Improve prize economics via procurement.</strong> The §14
+dealer relationship (£40k retail at £34k) becomes essential rather than
+advantageous — it is now load-bearing.</li>
+<li><strong>Register for VAT deliberately and structure for input
+recovery.</strong> Where prizes carry recoverable VAT, the net position
+improves. Cash prizes never will.</li>
+</ol>
+<p><strong>VAT registration threshold consideration:</strong> the
+threshold is £90k taxable turnover on a rolling 12-month basis.
+Competitions 1-3 total ~£72k gross — below it. Competition 4 crosses it.
+Staying under the threshold avoids VAT entirely but caps the business at
+roughly hobby scale and is incompatible with the §15 targets (£250k by
+month 6, £1m annualised). It is not a strategy, but it does mean
+<strong>competitions 1-3 may be VAT-free in practice</strong>, which is
+worth modelling as a separate scenario before dismissing.</p>
+<p><strong>This is now the single most important open item in the
+document — ahead of the acquirer question.</strong> The §5 competition
+sequence and §6 pricing both need rebuilding around it, and that should
+happen before Phase 1 spec work rather than after.</p>
+<hr />
+<h2
+id="7-payment-acquiring-red_circle-assumed--highest-priority-external-dependency">7.
+Payment acquiring 🔴 ASSUMED — HIGHEST PRIORITY EXTERNAL DEPENDENCY</h2>
+<p>Mainstream PSPs (e.g. Stripe) explicitly restrict games of chance,
+sweepstakes/contests with monetary prizes, and entry fees tied to prize
+draws. This is not a configuration problem — it's a business model
+eligibility problem, and it now sits above legal review as the single
+highest-risk dependency:</p>
+<pre><code>Programme
+    │
+    ├── Business
+    ├── Legal
+    ├── Payment Acquirer   ← elevated to top-level programme dependency
+    ├── Platform
+    └── Marketing</code></pre>
+<p><strong>Assumption (v0.2):</strong> <em>A UK payment acquirer that
+supports compliant UK prize competition businesses will be available on
+commercially acceptable terms.</em> Status: 🔴 ASSUMED. Owner:
+Founder.</p>
+<p><strong>Rolling reserve planning assumption:</strong> 15% held for
+180 days (used throughout §6). Also 🔴 ASSUMED.</p>
+<p><strong>Architectural decision (🟢 DECIDED):</strong> Build to a
+<code>PaymentProvider</code> interface from day one, not a named
+provider — acquirer may need to change.</p>
+<p><strong>Action:</strong> Begin underwriting/acquirer conversations
+<strong>now, in parallel with Phase 1 (Business &amp; Compliance
+spec)</strong> — see §16 phase gate correction. This has the longest and
+least certain lead time of anything in the plan and should not wait for
+the platform to be built.</p>
+<hr />
+<h2
+id="8-regulatory--licensing-model--gb-england-wales-scotland-green_circle-decided--red_circle-assumed">8.
+Regulatory &amp; licensing model — GB (England, Wales, Scotland) 🟢
+DECIDED / 🔴 ASSUMED</h2>
+<blockquote>
+<p><strong>Scope note:</strong> this analysis covers <strong>Great
+Britain only</strong>. The Gambling Act 2005 applies to England, Wales
+and Scotland. Northern Ireland operates under separate legislation and
+is <strong>out of scope</strong> for launch. Ireland is out of scope
+entirely.</p>
+</blockquote>
+<h3 id="81-the-question-that-defines-the-entire-business">8.1 The
+question that defines the entire business</h3>
+<p>There is one binary legal question, and everything else follows from
+it:</p>
+<blockquote>
+<p><strong>Is what we are running a lottery?</strong></p>
+</blockquote>
+<p>If yes, it is almost certainly an <strong>illegal lottery</strong>,
+because lottery operating licences are not available to commercial
+for-profit operators (see §8.5). If no, it sits outside gambling
+regulation and can be run commercially for profit.</p>
+<p>Per <a
+href="https://www.legislation.gov.uk/ukpga/2005/19/section/14">s.14
+Gambling Act 2005</a>, an arrangement is a <strong>simple
+lottery</strong> where all three of the following are present:</p>
+<pre><code>1. Persons are REQUIRED TO PAY to participate
+2. One or more prizes are allocated to members of a class
+3. Prizes are allocated by a process relying WHOLLY ON CHANCE</code></pre>
+<p>A <strong>complex lottery</strong> (s.14(3)) is the same but with a
+series of processes, the first of which relies wholly on chance — this
+catches multi-stage draws.</p>
+<p>Elements 2 and 3 are unavoidable in our product: we allocate prizes,
+and we do it randomly. <strong>The entire legal structure therefore
+rests on defeating element 1 — the requirement to pay.</strong> That is
+the whole ballgame.</p>
+<h3 id="82-the-four-routes-available-and-which-are-actually-viable">8.2
+The four routes available, and which are actually viable</h3>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Mechanism</th>
+<th>Licensable?</th>
+<th>Viable for us?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A — Free entry route</strong></td>
+<td>Paid entry + genuine free alternative (Sch. 2 para. 8)</td>
+<td>No licence needed</td>
+<td>✅ <strong>Recommended</strong></td>
+</tr>
+<tr>
+<td><strong>B — Genuine skill</strong></td>
+<td>Skill/judgement/knowledge defeats "wholly on chance" (s.14(5))</td>
+<td>No licence needed</td>
+<td>⚠️ Weak — high risk</td>
+</tr>
+<tr>
+<td><strong>C — Society lottery / ELM</strong></td>
+<td>Licensed lottery for good causes</td>
+<td>Licence/registration</td>
+<td>❌ Not available commercially</td>
+</tr>
+<tr>
+<td><strong>D — Free-to-enter only</strong></td>
+<td>No payment at all</td>
+<td>No licence needed</td>
+<td>❌ No revenue model</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="83-route-a--the-free-entry-route-recommended-green_circle-decided">8.3
+Route A — the free entry route (RECOMMENDED) 🟢 DECIDED</h3>
+<p><a
+href="https://www.legislation.gov.uk/ukpga/2005/19/schedule/2">Schedule
+2, paragraph 8</a> sets out four conditions. <strong>All four must be
+satisfied.</strong> Failing any one of them means participants are
+treated as required to pay — and the arrangement becomes an unlicensed
+lottery.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Condition</th>
+<th>Platform implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Every eligible individual has a genuine <strong>choice</strong>
+between paying and sending a communication</td>
+<td>Free route must be available to everyone, always — not a hidden
+fallback</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>The communication may be <strong>ordinary post</strong>
+(first/second class, no special delivery), <strong>or</strong> another
+method that is <strong>neither more expensive nor less
+convenient</strong> than paying</td>
+<td>"Not less convenient" is the hard test. A 6-step postal form against
+2-click Apple Pay is legally fragile</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>The choice is <strong>publicised</strong> so as to be likely to come
+to the attention of each person proposing to participate</td>
+<td>Prominent, pre-purchase, on the competition page — not buried in
+T&amp;Cs</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>The prize allocation system <strong>does not differentiate</strong>
+between paid and free entrants</td>
+<td>One Entry Engine, identical draw treatment — validates the Stage 1
+§16 architecture decision</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Condition 4 is the architectural one.</strong> It is why
+paid, postal and free entries must share a single Entry Engine with
+identical eligibility and draw logic — this is now a <em>legal</em>
+requirement, not a design preference.</p>
+<p><strong>Condition 2 is the operational one, and the most commonly
+failed.</strong> The DCMS Code reinforces it: where a free route doesn't
+offer a genuine choice, that strongly indicates participants are in
+practice required to pay (<a
+href="https://www.gov.uk/government/publications/voluntary-code-of-good-practice-for-prize-draw-operators/voluntary-code-of-good-practice-for-prize-draw-operators">Code
+clause 2.4</a>). The ASA takes the same position — a free route cannot
+carry any charge above the normal cost of the communication method (<a
+href="https://www.asa.org.uk/advice-online/promotional-marketing-free-entry-routes.html">ASA
+guidance on free entry routes</a>).</p>
+<h3
+id="84-route-b--the-skill-test-rejected-as-primary-model-green_circle-decided">8.4
+Route B — the skill test (REJECTED as primary model) 🟢 DECIDED</h3>
+<p><a
+href="https://www.legislation.gov.uk/ukpga/2005/19/section/14">s.14(5)</a>
+provides that a skill/judgement/knowledge requirement is <strong>still
+treated as wholly chance</strong> unless it can reasonably be expected
+to:</p>
+<ul>
+<li><strong>(a)</strong> prevent a significant proportion of
+participants from <strong>receiving a prize</strong>, <em>and</em></li>
+<li><strong>(b)</strong> prevent a significant proportion of people who
+<strong>wish to participate</strong> from doing so</li>
+</ul>
+<p>Both limbs must be satisfied. This is a demanding test — and note the
+commercial paradox: to pass, the question must be <em>hard enough to
+deter a significant proportion of your own customers</em>. A question
+genuinely difficult enough to satisfy s.14(5) is directly hostile to
+conversion.</p>
+<p>BOTB's Spot the Ball model (expert-judged coordinate selection) is a
+genuine attempt at this. A multiple-choice question of the "What colour
+is the sky?" variety is not, and the Gambling Commission has been
+consistent that trivial questions don't satisfy the test.</p>
+<p><strong>Decision:</strong> do not rely on skill as the legal basis.
+It may be layered in later as a product feature, but the free entry
+route remains the legal foundation.</p>
+<h3
+id="85-route-c--why-a-ukgc-licence-is-not-an-alternative-green_circle-decided">8.5
+Route C — why a UKGC licence is NOT an alternative 🟢 DECIDED</h3>
+<p>This deserves stating plainly, because "just get licensed instead" is
+the intuitive assumption and it is <strong>wrong</strong>.</p>
+<p>Lottery operating licences are issued only to <strong>non-commercial
+societies</strong> and <strong>External Lottery Managers</strong> acting
+on their behalf. Per <a
+href="https://www.gamblingcommission.gov.uk/public-and-players/guide/page/types-of-lottery-you-can-run-without-a-licence">Gambling
+Commission guidance</a>, lotteries cannot be run for private or
+commercial gain, and a minimum <strong>20% of proceeds must go to the
+good cause</strong>. Small society lotteries are capped at £20,000 per
+draw / £250,000 per calendar year and require local authority
+registration.</p>
+<p><strong>Implications:</strong></p>
+<ul>
+<li>There is <strong>no licensed route</strong> to a commercial
+for-profit prize competition business in GB</li>
+<li>Becoming an ELM for a charity partner is possible, but caps you at
+≥20% of proceeds to the cause and fundamentally changes the business
+model</li>
+<li>"Applying for a licence" is not a fallback if the free-entry
+structure fails. <strong>There is no plan B of that kind</strong> —
+which is precisely why the free entry route must be executed correctly
+from day one</li>
+</ul>
+<p>This materially raises the stakes on §8.3. Getting it wrong doesn't
+mean a fine and a licence application; it means the business model is
+unlawful.</p>
+<h3
+id="86-schedule-2-traps-that-directly-constrain-product-design-red_circle-critical">8.6
+Schedule 2 traps that directly constrain product design 🔴 CRITICAL</h3>
+<p>Schedule 2 contains provisions that bite on specific product
+mechanics from the Stage 2 competitor work:</p>
+<table>
+<thead>
+<tr>
+<th>Provision</th>
+<th>What it says</th>
+<th>Product constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Para. 2(c)</strong></td>
+<td>Paying for goods/services at a price reflecting the opportunity to
+participate <strong>counts as paying</strong></td>
+<td>Cannot dodge the rules by bundling entries with merchandise</td>
+</tr>
+<tr>
+<td><strong>Para. 6</strong></td>
+<td>A requirement to pay <strong>to discover whether a prize has been
+won</strong> counts as paying to participate</td>
+<td><strong>Instant-win reveal cannot be paywalled.</strong> The Stage 2
+"reveal experience" must never charge to unlock a result</td>
+</tr>
+<tr>
+<td><strong>Para. 7</strong></td>
+<td>A requirement to pay <strong>to take possession of a prize</strong>
+counts as paying to participate</td>
+<td>No delivery fees, admin fees or claim charges on prizes</td>
+</tr>
+<tr>
+<td><strong>Para. 3</strong></td>
+<td>Immaterial who receives the payment or benefit</td>
+<td>Cannot route payment through a third party to break the chain</td>
+</tr>
+<tr>
+<td><strong>Para. 5</strong></td>
+<td>Normal-rate communication costs don't count as payment; "normal
+rate" must not reflect the entry opportunity</td>
+<td>No premium-rate numbers or surcharged entry channels</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Paragraph 6 is the one most likely to be tripped by
+accident</strong>, given instant wins are core to the MVP (§12). Any
+design where the customer pays to reveal, unlock, or check a result —
+rather than paying to enter — risks converting the whole product into a
+lottery.</p>
+<p><strong>Paragraph 7 means the "free delivery" promise in the Stage 2
+winner SLA is a legal requirement, not a customer-service
+nicety.</strong></p>
+<h3
+id="87-platform-requirements-arising-directly-from-statute-green_circle-decided">8.7
+Platform requirements arising directly from statute 🟢 DECIDED</h3>
+<p>These are non-negotiable build requirements, traceable to specific
+provisions:</p>
+<pre><code>Sch.2 para.8(1)(d)  →  Single Entry Engine; identical draw treatment for paid/postal/free
+Sch.2 para.8(1)(c)  →  Free route prominently displayed pre-purchase on every competition
+Sch.2 para.8(1)(b)  →  Free route convenience parity — measured and documented, not assumed
+Sch.2 para.6        →  No payment gate anywhere in the instant-win reveal path
+Sch.2 para.7        →  No fee to claim or receive any prize, including delivery
+s.14(2)/(3)         →  Auditable RNG draw with retained evidence per draw</code></pre>
+<h3 id="88-consequences-of-getting-it-wrong-red_circle-high-impact">8.8
+Consequences of getting it wrong 🔴 HIGH IMPACT</h3>
+<p>Promoting an unlicensed lottery is a <strong>criminal
+offence</strong>, not a regulatory breach. The Gambling Commission has
+<a
+href="https://www.gamblingcommission.gov.uk/guidance/guidance-to-licensing-authorities/part-34-specific-offences-in-relation-to-lotteries">powers
+to investigate and prosecute illegal gambling</a> and has historically
+stated it monitors the lottery/prize-competition boundary.</p>
+<p>Realistic exposure: criminal liability for the promoter, business
+shutdown, payment acquirer termination (immediate, and effectively
+terminal per §7), reputational destruction, and personal liability for
+the founder as a director. There is no "pay a fine and continue" version
+of this outcome.</p>
+<h3 id="89-legal-engagement-scope-red_circle-assumed">8.9 Legal
+engagement scope 🔴 ASSUMED</h3>
+<p>Legal review is broader than T&amp;Cs — and given §8.5, the
+competition structure itself needs sign-off before build, not after:</p>
+<pre><code>Legal
+  ├── Competition structure vs. s.14 / Sch.2      ← PRIORITY: the business model itself
+  ├── Free entry mechanism — convenience parity   ← the most litigated condition
+  ├── Instant-win mechanics vs. Sch.2 para.6      ← product-specific risk
+  ├── Terms &amp; conditions
+  ├── Privacy / UK GDPR
+  ├── Marketing &amp; advertising claims (CAP/BCAP)   ← before ad spend starts
+  ├── Promotions &amp; pricing mechanics
+  ├── Prize procurement / supplier contracts
+  └── Winner releases &amp; publicity consents</code></pre>
+<p><strong>Budget assumption:</strong> £3k-£7.5k initial. 🔴 ASSUMED —
+planning provision, not a quote. Should be treated as a floor given §8.5
+raises the stakes; Mode C agent preparation (§1) should reduce billable
+hours by arriving with drafted documents rather than a blank brief.</p>
+<p><strong>Until reviewed, every statement in this section is an
+assumption, not a compliance position.</strong></p>
+<hr />
+<h2
+id="9-compliance-obligations--five-regulators-not-one-green_circle-decided">9.
+Compliance obligations — five regulators, not one 🟢 DECIDED</h2>
+<p>A common mistake is treating this as a gambling-regulation question.
+It isn't. Sitting outside the Gambling Act means <strong>five</strong>
+other regimes apply, and two of them carry heavier practical risk than
+the UKGC.</p>
+<table>
+<thead>
+<tr>
+<th>Regime</th>
+<th>Regulator</th>
+<th>Risk level</th>
+<th>Nature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gambling Act 2005</td>
+<td>Gambling Commission</td>
+<td>🔴 Critical</td>
+<td>Criminal — structure must not be a lottery (§8)</td>
+</tr>
+<tr>
+<td><strong>VAT</strong></td>
+<td><strong>HMRC</strong></td>
+<td>🔴 <strong>Critical</strong></td>
+<td><strong>Active enforcement campaign — see §9.1</strong></td>
+</tr>
+<tr>
+<td>Consumer protection (DMCCA 2024)</td>
+<td>CMA</td>
+<td>🟠 High</td>
+<td>Fines to 10% global turnover</td>
+</tr>
+<tr>
+<td>Advertising (CAP/BCAP)</td>
+<td>ASA</td>
+<td>🟠 High</td>
+<td>Ad bans, reputational</td>
+</tr>
+<tr>
+<td>Data protection</td>
+<td>ICO</td>
+<td>🟡 Medium</td>
+<td>UK GDPR / DPA 2018</td>
+</tr>
+<tr>
+<td>DCMS Voluntary Code</td>
+<td>DCMS</td>
+<td>🟡 Medium</td>
+<td>Voluntary but expected — §9.5</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="91-hmrc--vat--the-most-material-finding-in-this-document-red_circle-critical">9.1
+HMRC / VAT — the most material finding in this document 🔴 CRITICAL</h3>
+<p><strong>This changes the business model economics fundamentally and
+was not accounted for in v0.1 or v0.2.</strong></p>
+<p>On 17 February 2026, the Exchequer Secretary to the Treasury
+confirmed in a <a
+href="https://questions-statements.parliament.uk/written-questions/detail/2026-02-09/111960">written
+parliamentary answer</a> that prize draws offering <strong>both paid and
+free entry routes are not eligible for VAT exemption</strong>, and paid
+entries are subject to VAT at the <strong>standard 20%
+rate</strong>.</p>
+<p>In July 2026 HMRC launched a <strong>one-to-many campaign</strong>,
+writing directly to prize draw operators to press the point (<a
+href="https://www.icaew.com/insights/tax-news/2026/aug-2026/hmrc-writes-to-businesses-running-prize-draws">ICAEW</a>,
+<a
+href="https://www.tax.org.uk/one-to-many-campaign-vat-on-sales-of-prize-draw-tickets">CIOT</a>).
+Key features:</p>
+<ul>
+<li>Operators finding an error must correct it via their next VAT return
+or disclose to HMRC</li>
+<li>If HMRC finds an undisclosed error later, disclosure is treated as
+<strong>"prompted"</strong>, increasing penalties</li>
+<li><strong>Retrospective exposure</strong> applies to prior years'
+revenue</li>
+<li>Industry estimates suggest margin compression of roughly
+<strong>25-30%</strong> (<a
+href="https://igamingbusiness.com/finance/drawhouse-warn-vat-changes-could-slash-prize-draw-operator-margins-30/">iGaming
+Business</a>)</li>
+</ul>
+<p><strong>The bitter irony worth naming:</strong> the free entry route
+is what keeps the business outside gambling licensing (§8.3) — and it is
+<em>also</em> precisely what disqualifies it from VAT exemption. The two
+positions are in direct tension, and you cannot optimise for both.</p>
+<p><strong>Status:</strong> 🔴 ASSUMED that HMRC's position holds. The
+sector is contesting it and litigation is plausible, but
+<strong>planning must assume HMRC is right</strong>. Assuming otherwise
+is not a strategy.</p>
+<p><em>Financial impact is modelled in §6.7 — it is severe.</em></p>
+<h3 id="92-cma--consumer-protection--dmcca-2024-orange_circle-high">9.2
+CMA / consumer protection — DMCCA 2024 🟠 HIGH</h3>
+<p>The <a
+href="https://www.gov.uk/government/publications/how-the-cma-uses-its-direct-consumer-enforcement-powers">Digital
+Markets, Competition and Consumers Act 2024</a> gave the CMA
+<strong>direct enforcement</strong> powers from 6 April 2025 — it no
+longer needs to go to court first. Penalties reach the <strong>higher of
+£300,000 or 10% of global turnover</strong>, and the CMA can order
+consumer redress.</p>
+<p>Directly relevant exposures for this product:</p>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drip pricing — fees appearing late in checkout</td>
+<td>Explicitly targeted by CMA enforcement</td>
+</tr>
+<tr>
+<td>Urgency/scarcity claims — "only 500 left", countdowns</td>
+<td>Must be <strong>true and verifiable</strong>, not merchandising
+theatre</td>
+</tr>
+<tr>
+<td>Fake or incentivised reviews</td>
+<td>Banned practice</td>
+</tr>
+<tr>
+<td>Sell-through percentages</td>
+<td>If displayed, must be accurate — this is a consumer law claim, not
+decoration</td>
+</tr>
+<tr>
+<td>Subscription auto-renewal (deferred to v2)</td>
+<td>New DMCCA requirements apply when built</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design consequence:</strong> the Stage 2 merchandising engine
+— badges, countdowns, "% sold", "ending tonight" — sits squarely inside
+CMA scope. Every urgency signal must be generated from real data with an
+audit trail. Fabricated urgency is a 10%-of-turnover risk, and the
+agent-driven merchandising in §1/§10 must be constrained
+accordingly.</p>
+<h3 id="93-asa--advertising--cap--bcap-orange_circle-high">9.3 ASA /
+advertising — CAP &amp; BCAP 🟠 HIGH</h3>
+<p>The DCMS Code explicitly does <strong>not</strong> displace ASA
+obligations — the ASA continues to assess ads independently and may find
+a breach even where an operator believes it has met the Code (Code,
+Context section).</p>
+<p>Key requirements:</p>
+<ul>
+<li>Free entry route must be clear in advertising, not just on site (<a
+href="https://www.asa.org.uk/advice-online/promotional-marketing-free-entry-routes.html">ASA
+free entry route guidance</a>)</li>
+<li>Must not imply participation solves financial problems, is an
+escape, or provides financial security (Code 1.11; <a
+href="https://www.asa.org.uk/advice-online/betting-and-gaming-lotteries.html">ASA
+lotteries guidance</a>)</li>
+<li>Must not exploit young or vulnerable people</li>
+<li>Advertised prizes must be awarded, or a reasonable equivalent of
+similar nature and value (<a
+href="https://www.asa.org.uk/advice-online/promotional-marketing-high-value-prize-promotions.html">ASA
+high value prize promotions</a>)</li>
+<li>No targeting under-18s</li>
+</ul>
+<p><strong>This is why marketing claims need legal sign-off before spend
+starts (§8.9), not before checkout ships.</strong></p>
+<h3 id="94-ico--data-protection-yellow_circle-medium">9.4 ICO / data
+protection 🟡 MEDIUM</h3>
+<p>UK GDPR and DPA 2018 apply in full. Relevant: consent for marketing,
+lawful basis for behavioural profiling (the Stage 2 personalisation
+ambition), winner publicity consent, data retention on entry records vs.
+audit obligations, and DSAR handling. The winner-publicity consent flow
+in the Stage 2 fulfilment workflow is a data protection matter, not just
+a content one.</p>
+<h3
+id="95-dcms-voluntary-code--full-requirement-mapping-green_circle-decided">9.5
+DCMS Voluntary Code — full requirement mapping 🟢 DECIDED</h3>
+<p>Published 20 November 2025, <a
+href="https://www.gov.uk/government/publications/voluntary-code-of-good-practice-for-prize-draw-operators/voluntary-code-of-good-practice-for-prize-draw-operators">updated
+31 July 2026</a>. Signatories had until <strong>20 May 2026</strong> to
+implement.</p>
+<p><strong>Notable:</strong> every benchmark operator from Stage 2 is a
+signatory — Omaze, BOTB, That Prize Guy, Elite Competitions, Dream Car
+Giveaways, 7 Days Performance — as is PromoVeritas (the independent
+verification provider). Non-signatory status would now be a visible
+competitive negative, not a neutral choice.</p>
+<p><strong>Decision: comply and sign.</strong> Full
+clause-to-requirement mapping:</p>
+<table>
+<thead>
+<tr>
+<th>Clause</th>
+<th>Requirement</th>
+<th>Platform / operating implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>18+ only; reasonable age verification; no under-18 ad targeting</td>
+<td>Age verification at registration; ad audience controls</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Transparent complaints process + dispute resolution</td>
+<td>Complaints workflow, ADR route, SLA tracking</td>
+</tr>
+<tr>
+<td><strong>1.3</strong></td>
+<td><strong>Credit cards capped £250/month per player; credit cards
+entirely prohibited for instant wins</strong> — including via money
+service businesses</td>
+<td>Card-type detection at checkout; rolling monthly counter;
+<strong>hard block on credit cards for any instant-win
+product</strong></td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Proportionate max monthly spend limits, or player-set limits that
+cannot be exceeded; <strong>must allow £0</strong></td>
+<td>Spend limit engine, settable at registration or after first
+purchase, before further entries</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Account suspension (min 6 months) and permanent closure; <strong>no
+marketing during suspension</strong>; shorter "pause" encouraged</td>
+<td>Self-exclusion engine wired into marketing suppression</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Monitor for harm/potential harm from account opening</td>
+<td>Behavioural monitoring — the Mode B RG agent in §10</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>Tailored, proportionate intervention, up to preventing further
+participation</td>
+<td>Intervention workflow with human decision (§10)</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Signpost support — Citizens Advice, Money Advice Trust, National
+Debtline, Samaritans, Mind</td>
+<td>RG content and targeted in-product signposting</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Appropriate time between draw opening and closing</td>
+<td>Minimum competition duration rule</td>
+</tr>
+<tr>
+<td><strong>1.10</strong></td>
+<td>Instant wins: paid/free equivalence and clear free-route
+explanation. <strong>Instant wins must not be the majority of an
+operator's competitions at any time</strong></td>
+<td><strong>Hard product-mix constraint</strong> — merchandising engine
+must enforce a ratio cap</td>
+</tr>
+<tr>
+<td>1.11</td>
+<td>CAP/BCAP compliance; socially responsible; no "escape"/"financial
+solution" framing</td>
+<td>Creative review gate (Mode B, §10)</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Clear summary of mechanics per product variant + statement prizes
+awarded per laws of chance</td>
+<td>Per-competition rules content block</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Prizes awarded fairly; independent person <strong>or</strong>
+verifiably random auditable computer process <strong>or</strong>
+certified physical machine; <strong>equal chance paid vs free</strong>;
+publish draw mechanism</td>
+<td>Auditable RNG + published draw method per competition</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Where possible, pre-entry information on likelihood of winning / max
+tickets</td>
+<td>Odds and inventory display</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Free entry prominent <strong>before point of purchase</strong>; post
+or equally convenient/cheap method; sufficient time to enter</td>
+<td>Free route UX + timing rules</td>
+</tr>
+<tr>
+<td><strong>2.5</strong></td>
+<td>Must award the advertised prize or a reasonable cash alternative.
+<strong>Must not reduce the prize for low sales, change the draw date,
+or cancel for low sales</strong></td>
+<td><strong>Guaranteed draw is an obligation, not a marketing
+badge</strong> — see capital consequence below</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Charitable contribution transparency; Code of Fundraising Practice
+where applicable</td>
+<td>Only if charity element introduced</td>
+</tr>
+<tr>
+<td>3.1-3.5</td>
+<td>Compliance monitoring; third-party/affiliate compliance via
+contract; publish measures on site</td>
+<td>Compliance dashboard; affiliate contract terms; public trust
+page</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clause 2.5 confirms the capital risk analysis in §6 is not
+conservative — it is mandatory.</strong> You cannot shrink a prize or
+cancel a draw because sales were poor. The downside scenarios in §6.5
+are therefore real committed exposure, not a modelling choice. This is
+also why the undersell policy (§3) operates on the <em>next</em>
+competition's sizing — it is the only lever available.</p>
+<p><strong>Clause 1.10 is a genuine product constraint</strong> that the
+Stage 3 MVP didn't account for: instant wins can be core, but cannot be
+more than half the live competition portfolio. The merchandising engine
+(§12) needs to enforce this.</p>
+<hr />
+<h2
+id="10-operating-model--agent-first-with-escalation-triggers-green_circle-decided">10.
+Operating model — agent-first with escalation triggers 🟢 DECIDED</h2>
+<p>Every function has agent involvement (§1). What this table defines is
+the <strong>mode</strong> each runs in, and what escalates a Mode A
+function to Mode B, or a Mode B approval to genuine human attention.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Mode</th>
+<th>Agent does</th>
+<th>Escalation / gate trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Engineering / platform</td>
+<td>A</td>
+<td>Build, maintain, deploy, test</td>
+<td>→ B for architectural change, security incident, acquirer-driven
+requirement</td>
+</tr>
+<tr>
+<td>Analytics / forecasting</td>
+<td>A</td>
+<td>Velocity, CAC, variance, alerting</td>
+<td>→ B when variance breaches undersell threshold (§3)</td>
+</tr>
+<tr>
+<td>Finance ops</td>
+<td>A</td>
+<td>Reconciliation prep, reserve tracking, contribution reporting</td>
+<td>→ B at month-end sign-off, any settlement/reserve discrepancy,
+revenue &gt; £100k/month</td>
+</tr>
+<tr>
+<td>Support — tier 1</td>
+<td>A</td>
+<td>Factual queries, order/entry lookups</td>
+<td>→ B for any complaint, any RG-flagged account, unresolved after 1
+agent cycle, or tickets &gt; 25/week</td>
+</tr>
+<tr>
+<td>Content / creative</td>
+<td>B</td>
+<td>Copy, vehicle editorial, asset prep</td>
+<td>Founder approves all; extra scrutiny on hero creative and any
+ASA-exposed claim</td>
+</tr>
+<tr>
+<td>Merchandising</td>
+<td>B</td>
+<td>Zone config, scheduling, badge/urgency rules</td>
+<td>Founder approves; auto-flag when a competition trails forecast</td>
+</tr>
+<tr>
+<td>Lifecycle / CRM</td>
+<td>B</td>
+<td>Campaign build, sequencing, reactivation</td>
+<td>Founder approves; mandatory review on anything touching spend or
+RG</td>
+</tr>
+<tr>
+<td>Marketing ops</td>
+<td>B</td>
+<td>Ad variants, cohort monitoring, budget recommendations</td>
+<td>Founder approves all spend changes above test-cohort level</td>
+</tr>
+<tr>
+<td>Draw execution</td>
+<td>B</td>
+<td>Automated RNG draw, manifest, audit record</td>
+<td>Founder verification sign-off on <strong>every</strong> draw, no
+exceptions</td>
+</tr>
+<tr>
+<td>Winner verification &amp; contact</td>
+<td>B</td>
+<td>Eligibility checks, verification pack, drafted comms</td>
+<td>Founder approves and makes the contact</td>
+</tr>
+<tr>
+<td>Free-entry processing</td>
+<td>B</td>
+<td>Intake, validation, batch preparation, parity checks</td>
+<td>Founder audits every batch — compliance-critical path (§8)</td>
+</tr>
+<tr>
+<td>RG / harm intervention</td>
+<td>B</td>
+<td>Detection, scoring, evidence pack, recommended action</td>
+<td>Founder decides and owns the decision (DCMS Code
+accountability)</td>
+</tr>
+<tr>
+<td>Legal</td>
+<td>C</td>
+<td>Draft terms, briefing packs, regulatory change tracking</td>
+<td>Solicitor reviews and advises; founder signs</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td>C</td>
+<td>Reconciliation, management accounts, filing prep</td>
+<td>Accountant signs statutory accounts</td>
+</tr>
+<tr>
+<td>Payment acquirer</td>
+<td>C</td>
+<td>Underwriting pack, provider comparison, reserve modelling</td>
+<td>Founder negotiates and contracts</td>
+</tr>
+<tr>
+<td>Prize procurement</td>
+<td>C</td>
+<td>Price benchmarking, stock sourcing, shortlists, draft terms</td>
+<td>Founder negotiates and buys</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design principle:</strong> agents remove workload, not
+accountability. Every agent action touching money, compliance, a winner
+or a customer's wellbeing is logged and attributable, with a human
+approval point wherever the DCMS Code or consumer law expects one.</p>
+<p><strong>Mode migration is expected.</strong> Functions should move A
+← → B deliberately as confidence builds or risk changes — e.g.
+merchandising might earn Mode A for routine scheduling while
+hero-competition placement stays Mode B. Treat mode assignment as a
+reviewable operating decision, not a fixed architecture.</p>
+<p><strong>First actual hire (🔴 ASSUMED):</strong> most likely
+part-time support/ops, triggered by sustained tickets &gt; 25/week the
+agent can't close, or the founder becoming the approval bottleneck at 5+
+concurrent winner fulfilments.</p>
+<hr />
+<h2 id="11-insurance--split-by-type-green_circle-decided">11. Insurance
+— split by type 🟢 DECIDED</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public liability</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Professional indemnity</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Cyber</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Directors &amp; officers</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Prize (loss/damage/theft of physical prize — <strong>not</strong>
+payout indemnity)</td>
+<td>Optional at launch</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>Future</td>
+</tr>
+</tbody>
+</table>
+<p>Note: prize <em>payout</em> indemnity insurance remains explicitly
+rejected (§3) — this line covers physical prize loss/damage only, a
+different risk entirely. Flagged here because v0.2 reintroduced "Prize"
+insurance without distinguishing it from the rejected payout-indemnity
+model — this is the clarification.</p>
+<hr />
+<h2 id="12-mvp-scope-green_circle-decided">12. MVP scope 🟢 DECIDED</h2>
+<pre><code>PUBLIC              CUSTOMER            PLATFORM              ADMIN
+Homepage             Register/login       Competition engine    Create/edit competition
+Competition catalogue Basket              Entry engine           Manage orders
+Competition page      Checkout            Orders                 Manage entries
+Winner pages           Payment             Payments               Process postal/free entries
+How it works           Entry history       Free entry             Close competition
+Free entry              My competitions    Draw locking            Execute draw
+Terms / legal            Basic profile      Winner selection         Record winner
+FAQs                                         Audit log                Basic customer search
+                                                                        Refund
+                                                                        Basic reporting</code></pre>
+<p><strong>Added by the hybrid operating model (§1, §10) — required at
+MVP:</strong></p>
+<pre><code>AGENT INFRASTRUCTURE
+Approval queue — single place the founder clears all Mode B items
+Mode configuration — per-function A/B/C setting, changeable without a release
+Agent action audit log — who/what/when, agent vs human attribution
+Escalation routing — Mode A → Mode B on trigger conditions (§10)
+Human sign-off gates — draw verification, winner contact, free-entry batch audit, RG decisions
+Guardrails on agent-writable surfaces — pricing, merchandising, customer comms
+Agent observability — what agents did, changed, proposed and flagged</code></pre>
+<p>The approval queue is the load-bearing piece. In a hybrid model the
+founder's throughput is set by how fast Mode B items can be reviewed, so
+queue design is an operational constraint, not a UI detail.</p>
+<p>This is a real addition to MVP scope, not a free efficiency. It is
+the cost of the agentic model, and it should be scoped honestly in the
+Phase 2 architecture rather than assumed to be trivial.</p>
+<p><strong>Illustrative walkthroughs of the customer-facing paths above
+are in §22</strong> — paid entry, free entry route, and instant win with
+reveal.</p>
+<p><strong>Explicitly deferred (not built before revenue):</strong> AI
+personalisation, Prize Pass/subscriptions, referral programme, affiliate
+platform, complex loyalty, multiple wallet currencies, advanced CRM,
+full BI platform, gamification/leaderboards, white label,
+internationalisation, native apps, predictive modelling, full
+instant-win presentation suite.</p>
+<p>Design the boundaries so these can be added later. Don't build them
+now.</p>
+<hr />
+<h2 id="13-acquisition-strategy-red_circle-assumed">13. Acquisition
+strategy 🔴 ASSUMED</h2>
+<p>Largest actual business risk — larger than the technology. 400+
+existing operators means "better website → customers arrive" does not
+hold.</p>
+<p><strong>Model:</strong> Paid social + organic social +
+influencer/creator + (later) referral + CRM retention. Not SEO-led
+initially.</p>
+<p><strong>No industry-average CAC assumption used</strong> — reliable
+public operator CAC data doesn't exist. Establish experimentally via
+controlled cohort spend: £250 → £500 → £1,000 → £2,500, only scaling
+combinations with viable economics.</p>
+<p><strong>Key equation:</strong></p>
+<pre><code>90-day contribution per acquired customer &gt; CAC</code></pre>
+<p>Not first-order value &gt; CAC — this is a repeat-purchase business
+by nature (Stage 1 data: ~£75/year average spend across ~9
+transactions).</p>
+<p><strong>Operational intelligence (not an official platform
+claim):</strong> new Meta ad accounts in this vertical reportedly face
+initial delivery throttling — treat as a planning risk, not a fact.</p>
+<p><strong>Budget:</strong> £20k-£30k reserved specifically for
+acquisition testing, not deployed immediately.</p>
+<hr />
+<h2 id="14-unfair-advantage-green_circle-decided">14. Unfair advantage
+🟢 DECIDED</h2>
+<p>No inherent unfair advantage exists yet — "better technology" is not
+sufficient since Kiro/AI development is available to competitors too. A
+wedge must be manufactured.</p>
+<p><strong>Chosen wedge:</strong> Premium automotive + trust +
+disciplined economics.</p>
+<blockquote>
+<p><em>"The premium prize platform for people who actually love
+cars."</em></p>
+</blockquote>
+<p>Not dozens of unrelated £1 prizes on day one. Combine proper car
+editorial, exceptional photography, full vehicle specifications, video,
+transparent entries/odds, guaranteed draws, independent verification,
+and high-quality winner content. Cash and other products support the
+automotive hero proposition rather than compete with it.</p>
+<p><strong>Prize procurement as a core commercial competency:</strong>
+pursuing a performance/prestige dealer relationship (vehicle access,
+trade pricing, deferred settlement, photography access, credibility) in
+exchange for exposure, leads, content and consented customer data.
+Sourcing a £40k retail vehicle at £34k is £6k of contribution before a
+single entry sells — this is a real, poss­ible unfair advantage, not yet
+secured.</p>
+<p><strong>Prize procurement lifecycle (new chapter, per
+v0.2):</strong></p>
+<pre><code>Supplier → Trade Pricing → Vehicle Inspection → Photography →
+Marketing Approval → Competition → Winner → Settlement</code></pre>
+<hr />
+<h2
+id="15-success-definitions-red_circle-assumed-targets-not-commitments">15.
+Success definitions 🔴 ASSUMED (targets, not commitments)</h2>
+<h3 id="3-months--prove-demand">3 months — prove demand</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registered customers</td>
+<td>2,000+</td>
+</tr>
+<tr>
+<td>Paying customers</td>
+<td>750+</td>
+</tr>
+<tr>
+<td>Competitions completed</td>
+<td>3+</td>
+</tr>
+<tr>
+<td>Revenue</td>
+<td>£50k+</td>
+</tr>
+<tr>
+<td>Repeat purchaser rate</td>
+<td>20%+</td>
+</tr>
+<tr>
+<td>Payment success rate</td>
+<td>&gt;95%</td>
+</tr>
+<tr>
+<td>Draw/winner issues</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>A modest loss here is tolerable.</p>
+<h3 id="6-months--prove-repeat-economics">6 months — prove repeat
+economics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registered customers</td>
+<td>7,500+</td>
+</tr>
+<tr>
+<td>Paying customers</td>
+<td>3,000+</td>
+</tr>
+<tr>
+<td>Monthly active purchasers</td>
+<td>1,000+</td>
+</tr>
+<tr>
+<td>Cumulative revenue</td>
+<td>£250k+</td>
+</tr>
+<tr>
+<td>Repeat purchase rate</td>
+<td>30%+</td>
+</tr>
+<tr>
+<td>Contribution before founder salary</td>
+<td>Positive</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single most important signal:</strong> 90-day customer
+contribution ≥ CAC. If this isn't trending positive, do not scale
+spend.</p>
+<h3 id="12-months--prove-a-scalable-business">12 months — prove a
+scalable business</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registered customers</td>
+<td>20k-30k</td>
+</tr>
+<tr>
+<td>Paying customers</td>
+<td>8k-12k</td>
+</tr>
+<tr>
+<td>Monthly revenue</td>
+<td>£100k+</td>
+</tr>
+<tr>
+<td>Annualised revenue</td>
+<td>£1m+</td>
+</tr>
+<tr>
+<td>Repeat purchase</td>
+<td>40%+</td>
+</tr>
+<tr>
+<td>Contribution margin</td>
+<td>Positive</td>
+</tr>
+<tr>
+<td>Prize-supply relationships</td>
+<td>5+ meaningful</td>
+</tr>
+</tbody>
+</table>
+<p>£1m annualised is not a magic number — in a £1.3bn market, it's the
+threshold that distinguishes "a real business" from "a founder
+hobby."</p>
+<hr />
+<h2 id="16-stop-conditions-green_circle-decided">16. Stop conditions 🟢
+DECIDED</h2>
+<p>Stop or fundamentally rethink if, after 6 months,
+<strong>any</strong> of the following hold:</p>
+<ul>
+<li>Repeat purchase rate &lt; 20%</li>
+<li>90-day contribution remains below CAC</li>
+<li>Average competitions require &gt;80% sell-through to break even</li>
+<li>Cumulative operating loss &gt; £50k without improving unit
+economics</li>
+<li>Payment acquiring remains structurally unreliable</li>
+<li>Legal adviser cannot approve the operating model</li>
+</ul>
+<p><strong>Explicitly not a valid reason to continue:</strong> "we've
+already spent £40k building it."</p>
+<hr />
+<h2 id="17-pivot-rules-green_circle-decided">17. Pivot rules 🟢
+DECIDED</h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cars attract traffic but don't convert</td>
+<td>Push cash</td>
+</tr>
+<tr>
+<td>Cash shows high repeat rate</td>
+<td>Increase cash cadence</td>
+</tr>
+<tr>
+<td>Instant wins outperform end draws</td>
+<td>Accelerate instant-win platform</td>
+</tr>
+<tr>
+<td>CAC poor but referral/organic works</td>
+<td>Reduce paid acquisition dependency</td>
+</tr>
+<tr>
+<td>Dealer partnerships work</td>
+<td>Double down on automotive</td>
+</tr>
+<tr>
+<td>Hero prizes acquire customers cheaply</td>
+<td>Accept lower hero-prize margin, monetise via follow-on
+competitions</td>
+</tr>
+</tbody>
+</table>
+<p>The last rule matters most: not every competition needs to maximise
+margin. There is room for <strong>acquisition, retention, margin and
+reactivation</strong> competitions to play different roles — this is a
+requirement the Competition Economics Engine should eventually
+understand natively (relevant when the technical spec is written).</p>
+<hr />
+<h2 id="18-risk-register-green_circle-decided-living-document">18. Risk
+register 🟢 DECIDED (living document)</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Likelihood</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VAT at 20% makes unit economics unviable at planned pricing
+(§6.7, §9.1)</strong></td>
+<td><strong>High — HMRC position already stated and being
+enforced</strong></td>
+<td><strong>Critical</strong></td>
+<td>Rebuild pricing/sequence before Phase 1; procurement-led margin
+(§14); model sub-threshold scenario for comps 1-3; specialist VAT
+advice</td>
+</tr>
+<tr>
+<td><strong>Free entry route fails the "not less convenient" test (Sch.2
+para.8(1)(b))</strong></td>
+<td>Medium</td>
+<td><strong>Critical — criminal, and no licensed fallback exists
+(§8.5)</strong></td>
+<td>Legal sign-off on mechanism pre-build; document convenience parity;
+design free route as first-class, not fallback</td>
+</tr>
+<tr>
+<td><strong>Instant-win reveal inadvertently paywalled (Sch.2
+para.6)</strong></td>
+<td>Medium</td>
+<td>Critical</td>
+<td>Explicit architectural rule: no payment gate in reveal path; legal
+review of instant-win flow</td>
+</tr>
+<tr>
+<td>Acquirer rejection</td>
+<td>High</td>
+<td>Critical</td>
+<td>Multi-acquirer strategy; begin underwriting <strong>before</strong>
+build (see §19 phase correction)</td>
+</tr>
+<tr>
+<td>Legal structure rejected</td>
+<td>Medium</td>
+<td>Critical</td>
+<td>Draft to assumptions; specialist review before launch; note §8.5 —
+there is no licence to fall back on</td>
+</tr>
+<tr>
+<td>Fabricated urgency/scarcity breaches DMCCA (§9.2)</td>
+<td>Medium</td>
+<td>High</td>
+<td>All urgency signals generated from real data with audit trail;
+constrain merchandising agent (§10)</td>
+</tr>
+<tr>
+<td>Guaranteed-draw obligation (Code 2.5) forces payout on undersold
+competition</td>
+<td>Medium</td>
+<td>High</td>
+<td>Size prizes to available capital (§3); emergency reserve (§4);
+undersell policy on <em>next</em> competition</td>
+</tr>
+<tr>
+<td>Instant wins exceed 50% of portfolio, breaching Code 1.10</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Ratio cap enforced in merchandising engine (§12)</td>
+</tr>
+<tr>
+<td>Competition undersells</td>
+<td>Medium</td>
+<td>High</td>
+<td>Scale prizes to available capital; maintain emergency reserve</td>
+</tr>
+<tr>
+<td>Marketing CAC too high</td>
+<td>High</td>
+<td>High</td>
+<td>Small-budget cohort testing; pause scaling until unit economics are
+positive</td>
+</tr>
+<tr>
+<td>Chargebacks / rolling reserve</td>
+<td>Medium</td>
+<td>High</td>
+<td>Model 15% reserve (§6); maintain protected cash buffer</td>
+</tr>
+<tr>
+<td>Supplier withdraws prize</td>
+<td>Low</td>
+<td>High</td>
+<td>Multi-supplier relationships; contractual agreements</td>
+</tr>
+<tr>
+<td>Founder overload</td>
+<td>High</td>
+<td>Medium</td>
+<td>Agent-first operations (§1, §10); escalation triggers; automate
+repetitive tasks</td>
+</tr>
+<tr>
+<td>Trust / reputation issue</td>
+<td>Low</td>
+<td>Critical</td>
+<td>Transparent draws, independent verification, proactive
+communication</td>
+</tr>
+<tr>
+<td>Agent error reaching a customer (wrong comms, pricing, or winner
+action)</td>
+<td>Medium</td>
+<td>High</td>
+<td>Mode B approval gates on money/compliance/winner paths (§10); agent
+audit log; guardrails on agent-writable surfaces (§12)</td>
+</tr>
+<tr>
+<td>Approval bottleneck — founder can't clear Mode B queue fast
+enough</td>
+<td>High</td>
+<td>Medium</td>
+<td>Approval queue design (§12); migrate proven functions to Mode A;
+first ops hire trigger (§10)</td>
+</tr>
+<tr>
+<td>Rubber-stamping — founder approves Mode B items without real
+scrutiny, making gates cosmetic</td>
+<td>Medium</td>
+<td>High</td>
+<td>Keep Mode B set small and meaningful; sample-audit approved items;
+resist expanding Mode B as a substitute for agent quality</td>
+</tr>
+<tr>
+<td>Single-human dependency — founder is sole approver for all Mode B/C
+gates</td>
+<td>High</td>
+<td>High</td>
+<td>Document every approval process; name a backup approver for winner
+verification and RG decisions before launch</td>
+</tr>
+<tr>
+<td>Agent build scope underestimated — approval/audit tooling inflates
+MVP</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Scope agent infrastructure explicitly in Phase 2 architecture (§12);
+treat as a build line item, not an assumption</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="19-programme-phase-gates-yellow_circle-corrected">19. Programme
+phase gates 🟡 CORRECTED</h2>
+<p>v0.2 proposed this phase structure, with Payment Acquirer review
+placed at Phase 6:</p>
+<pre><code>PHASE 0    Discovery ✅
+PHASE 0.5  Business Case ✅ (this document)
+PHASE 1    Business &amp; Compliance Specification (assumption-based)
+PHASE 2    Architecture
+PHASE 3    Requirements
+PHASE 4    Implementation
+PHASE 5    Validation
+PHASE 6    External Reviews — Legal / Payment Acquirer / Advertising
+PHASE 7    Pilot Launch
+PHASE 8    Production Launch</code></pre>
+<p><strong>Correction:</strong> this contradicts the risk register's own
+mitigation for "Acquirer rejection" — <em>"begin underwriting before
+build."</em> As originally written, the acquirer isn't consulted until
+Phase 6, by which point Phases 2-4 (architecture through implementation)
+are already complete. If underwriting surfaces an architectural
+requirement (specific KYC flow, instant-win card blocking at checkout,
+settlement/reserve reporting), that's a partial rebuild, not a
+review.</p>
+<p><strong>Revised:</strong></p>
+<pre><code>PHASE 0    Discovery ✅
+PHASE 0.5  Business Case ✅ (this document)
+PHASE 1    Business &amp; Compliance Specification (assumption-based)
+             + Acquirer underwriting conversations START HERE, in parallel
+             + Informal legal sanity check on free-entry mechanism STARTS HERE
+PHASE 2    Architecture
+PHASE 3    Requirements
+PHASE 4    Implementation
+PHASE 5    Validation
+PHASE 6    Formal External Sign-off (Legal / Payment Acquirer / Advertising) — GATE
+PHASE 7    Pilot Launch
+PHASE 8    Production Launch</code></pre>
+<p>Starting underwriting and informal legal review early is cheap and
+fast. Formal sign-off remains a hard gate at Phase 6 — the programme
+doesn't stall waiting for a signed letter, but it also doesn't build
+software before knowing if the business model is bankable and
+lawful.</p>
+<p><strong>Go-live gate (unchanged from v0.2):</strong> software
+complete ≠ go-live. Go-live requires legal review complete, payment
+acquirer approved, marketing claims reviewed, terms approved.</p>
+<hr />
+<h2 id="20-gono-go-assessment-green_circle-decided">20. Go/No-Go
+assessment 🟢 DECIDED</h2>
+<p><strong>CONDITIONAL GO — but the conditions have hardened materially
+since v0.2.</strong></p>
+<p>No market reason to reject: the sector is sizeable, growing and
+fragmented. No fundamental technology barrier: agent-assisted build
+materially reduces cost. But the regulatory research in §8-§9 has
+reordered the risk register and introduced one finding that must be
+resolved before any further investment.</p>
+<p><strong>Revised risk order:</strong></p>
+<ol type="1">
+<li><strong>VAT / unit economics (§6.7, §9.1)</strong> — new #1. Three
+of five planned competitions cannot break even at any sell-through once
+20% VAT applies. This is a viability question, not a sensitivity.</li>
+<li><strong>Free entry route execution (§8.3)</strong> — elevated.
+Criminal exposure, and §8.5 confirms there is no licensed fallback if
+the structure fails.</li>
+<li>Customer acquisition</li>
+<li>Prize working capital</li>
+<li>Payment acquiring</li>
+<li>Consumer law / advertising compliance (§9.2, §9.3) — new entry,
+given DMCCA's 10%-of-turnover exposure attaches to exactly the
+merchandising mechanics the product depends on</li>
+<li>Trust / brand</li>
+<li>Founder operational load</li>
+<li>Technology</li>
+</ol>
+<p><strong>The honest position:</strong> this remains a viable market
+with a defensible strategy, but the business as <em>currently priced and
+sequenced</em> does not work. §6.8 sets out the five options for fixing
+it. One of them must be chosen and modelled before Phase 1 spec work
+begins — otherwise the platform gets built for economics that don't
+close.</p>
+<p>Technology being risk #9 is still the good news. It is also still the
+only risk that's well understood.</p>
+<hr />
+<h2 id="21-open-items-log--resolve-before-phase-1-spec-is-finalised">21.
+Open items log — resolve before Phase 1 spec is finalised</h2>
+<p><strong>Items 0a-0c are blocking.</strong> They determine whether the
+business is viable at all, and should be resolved before any further
+items are worked.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Owner</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0a</strong></td>
+<td><strong>Rebuild pricing and competition sequence for 20% VAT (§6.7,
+§6.8) — choose from the five options and model it</strong></td>
+<td>Founder</td>
+<td>🔴 <strong>BLOCKING — not started</strong></td>
+</tr>
+<tr>
+<td><strong>0b</strong></td>
+<td><strong>Specialist VAT advice: confirm HMRC position, input recovery
+on prize categories, and whether comps 1-3 can run
+sub-threshold</strong></td>
+<td>Founder / VAT adviser</td>
+<td>🔴 <strong>BLOCKING — not started</strong></td>
+</tr>
+<tr>
+<td><strong>0c</strong></td>
+<td><strong>Legal opinion on free entry mechanism convenience parity
+(Sch.2 para.8(1)(b)) and instant-win reveal path (Sch.2 para.6) — before
+build, per §8.5 there is no licensed fallback</strong></td>
+<td>Founder / Legal adviser</td>
+<td>🔴 <strong>BLOCKING — not started</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Real acquirer reserve rate + hold period (currently 15%/180 days
+assumed)</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Undersell policy trigger numbers (currently draft: £10k draw → cap
+next comp at 50% of remaining capital)</td>
+<td>Founder</td>
+<td>Draft, needs stress-testing</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Legal engagement scope confirmed to include marketing/ad claims, not
+just T&amp;Cs</td>
+<td>Founder / Legal adviser</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Comp 1-2 sizing revisited given break-even finding in §6.2</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Founder-load triggers for Product / Draw ops / Winner contact /
+Free-entry processing</td>
+<td>Founder</td>
+<td>Resolved in this version — see §10 escalation trigger table</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Named backup approver for winner verification and RG intervention
+decisions (single-human dependency, §18)</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Agent infrastructure build scope estimated and validated against MVP
+timeline (§12)</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Initial Mode A/B/C assignment per §10 reviewed and agreed — which
+functions genuinely earn autonomy at launch</td>
+<td>Founder</td>
+<td>Draft in §10, needs confirmation</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DCMS Code signatory application submitted (§9.5) — every benchmark
+competitor is already a signatory</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Merchandising claim-substantiation rules defined (DMCCA, §9.2) —
+every urgency/scarcity signal traceable to real data</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Instant-win portfolio ratio cap implemented per Code 1.10 (must not
+exceed 50% of live competitions)</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Credit card controls specified — £250/month rolling cap and absolute
+block on instant wins (Code 1.3)</td>
+<td>Founder</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Confirm whether Emergency Reserve (30%) replaces or sits alongside
+any prior "Operating Reserve" framing</td>
+<td>Founder</td>
+<td>Resolved in this version — Emergency Reserve is the only reserve
+line now; superseded prior "Operating Reserve" wording</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="22-customer-journey-prototypes-yellow_circle-illustrative">22.
+Customer journey prototypes 🟡 ILLUSTRATIVE</h2>
+<p>Three clickable prototype journeys accompany this document. They are
+<strong>illustrative walkthroughs, not designs or
+specifications</strong> — no real data, no payment processing,
+placeholder imagery, no branding assets.</p>
+<p><strong>Open:</strong> <a
+href="customer-journey-prototypes.html"><code>customer-journey-prototypes.html</code></a></p>
+<p>Each screen carries annotations colour-coded by type: design intent,
+commercial risk, or legal requirement with the specific statutory
+provision cited.</p>
+<table>
+<thead>
+<tr>
+<th>Journey</th>
+<th>Screens</th>
+<th>What it exists to demonstrate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A — Paid entry</strong></td>
+<td>5</td>
+<td>The core revenue path. Hero-led discovery, sell-through and odds
+disclosure, guaranteed-draw badging, quantity-based entry selection,
+spend-limit tracking, credit card restriction at checkout, post-purchase
+anticipation.</td>
+</tr>
+<tr>
+<td><strong>B — Free entry route</strong></td>
+<td>3</td>
+<td><strong>The legal foundation.</strong> Built specifically to
+demonstrate convenience parity under Sch. 2 para. 8(1)(b) — the most
+fragile condition in the entire model, and the one with no licensed
+fallback if it fails (§8.5).</td>
+</tr>
+<tr>
+<td><strong>C — Instant win + reveal</strong></td>
+<td>4</td>
+<td><strong>The highest-risk mechanic.</strong> Demonstrates that the
+reveal is free and post-payment, satisfying Sch. 2 para. 6, plus the
+absolute credit card prohibition on instant wins (Code 1.3) and
+continued end-draw eligibility.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-these-three">Why these three</h3>
+<p>Not the most visually appealing journeys — the ones carrying the most
+risk:</p>
+<ul>
+<li><strong>Journey B is the one to put in front of a
+solicitor.</strong> Convenience parity is a judgement call that is far
+easier to assess against a working walkthrough than a written
+description. It directly supports blocking item 0c.</li>
+<li><strong>Journey C makes the para. 6 boundary explicit.</strong> A
+requirement to pay to discover whether a prize has been won counts as
+paying to participate. Any "unlock your result" pattern would convert
+the product into an unlicensed lottery. Prototyping it proves the
+boundary is understood and designed around.</li>
+<li><strong>Journey A surfaces the pricing problem rather than hiding
+it.</strong> Entry price is set at 79p against a £48,000 prize and
+37,500 maximum entries — deliberately the level §6.7 shows requires ~76%
+sell-through to break even once 20% VAT applies.</li>
+</ul>
+<h3 id="deliberate-connection-between-a-and-b">Deliberate connection
+between A and B</h3>
+<p>Journey A's competition detail screen links directly into Journey B.
+This is not a prototype convenience — Sch. 2 para. 8(1)(c) requires the
+free route to be publicised so as to be likely to come to the attention
+of everyone proposing to participate. The routes must connect
+pre-purchase, which is why the link sits above the paid call to action
+rather than in the footer.</p>
+<h3 id="what-the-prototypes-do-not-cover">What the prototypes do not
+cover</h3>
+<p>Account management, wallet, winner fulfilment, admin and agent
+approval queues (§10, §12), postal intake operations, and any
+personalisation. Deferred deliberately — these three journeys were
+chosen to de-risk the blocking items, not to illustrate the full
+MVP.</p>
+<hr />
+<h2 id="next-step">Next step</h2>
+<p>Once §21 items 1-5 have real (even rough) answers, this document is
+ready to convert into the split constitutional spec:</p>
+<pre><code>01-business-compliance-model/
+  01a-competition-lifecycle-and-business-rules.md
+  01b-financial-model-and-reserves.md      ← §6 model belongs here, expanded
+  01c-compliance-and-legal-assumptions.md   ← §8, §9
+  01d-payment-and-acquirer-model.md         ← §7
+  01e-launch-gates-and-risk-register.md     ← §16, §18, §19</code></pre>
+<p>Not written until this v0.3 has been reviewed and the open items log
+has real answers, or explicit sign-off to proceed on assumptions.</p>
+</div>
+
+<footer class="site-footer">
+  <div>Prize Competition Venture &mdash; Business Case v0.4 &middot; working draft.</div>
+  <div>Status legend: &#128308; Assumed / Critical &nbsp;&middot;&nbsp; &#128993; Modelled &nbsp;&middot;&nbsp; &#128994; Decided</div>
+  <div style="margin-top:8px"><a href="customer-journey-prototypes.html">Customer journey prototypes &rarr;</a></div>
+</footer>
+</body>
+</html>
